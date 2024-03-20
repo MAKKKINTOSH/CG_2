@@ -1,6 +1,8 @@
 #include <windows.h>
 #include <gl/gl.h>
-
+#define MESSAGE 0
+#define RENDER 1
+#define TERMINATE 2
 LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 void EnableOpenGL(HWND hwnd, HDC*, HGLRC*);
 void DisableOpenGL(HWND, HDC, HGLRC);
@@ -8,6 +10,7 @@ void DisableOpenGL(HWND, HDC, HGLRC);
 int width, height;
 
 typedef struct {
+    int id;
     char name[20];
     float vert[8];
     float color[3];
@@ -15,9 +18,9 @@ typedef struct {
 } Button;
 
 Button buttons[] = {
-    {"printmessage", {0,0, 100,0, 100,30, 0,30}, {1, 100, 0}, FALSE},
-    {"render", {0,40, 100,40, 100,70, 0,70}, {1, 100, 0}, FALSE},
-    {"terminate", {0,80, 100,80, 100,110, 0,110}, {1, 100, 0}, FALSE},
+    {MESSAGE, "message", {0,0, 100,0, 100,30, 0,30}, {0.1f,0.1f,1}, FALSE},
+    {RENDER, "render", {0,40, 100,40, 100,70, 0,70}, {0.1f,1,0.1f}, FALSE},
+    {TERMINATE, "terminate", {0,80, 100,80, 100,110, 0,110}, {1,0.1f,0.1f}, FALSE},
 };
 
 int buttonCounter = sizeof(buttons) / sizeof(buttons[0]);
@@ -46,6 +49,27 @@ void ShowMenu()
         ButtonShow(buttons[i]);
     }
     glPopMatrix();
+}
+
+void RenderPicture()
+{
+    printf("rendering...");
+}
+
+void ButtonEventHandler(Button button)
+{
+    switch (button.id)
+    {
+        case MESSAGE:
+            printf("Hello World!\n");
+        break;
+        case RENDER:
+            RenderPicture();
+        break;
+        case TERMINATE:
+            PostQuitMessage(0);
+        break;
+    }
 }
 
 int WINAPI WinMain(HINSTANCE hInstance,
@@ -122,25 +146,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
             glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            glPushMatrix();
-            glRotatef(theta, 0.0f, 0.0f, 1.0f);
-
-            glBegin(GL_TRIANGLES);
-
-                glColor3f(1.0f, 0.0f, 0.0f);   glVertex2f(0.0f,   1.0f);
-                glColor3f(0.0f, 1.0f, 0.0f);   glVertex2f(0.87f,  -0.5f);
-                glColor3f(0.0f, 0.0f, 1.0f);   glVertex2f(-0.87f, -0.5f);
-
-            glEnd();
-
             ShowMenu();
 
-            glPopMatrix();
-
             SwapBuffers(hDC);
-
-            theta += 1.0f;
-            Sleep (1);
         }
     }
 
@@ -174,7 +182,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         case WM_LBUTTONDOWN:
             for (int i = 0; i < buttonCounter; i++){
                 if (IsCursorOnButton(LOWORD(lParam), HIWORD(lParam), buttons[i])){
-                    printf("%s\n", buttons[i].name);
+                    ButtonEventHandler(buttons[i]);
                 }
             }
         break;
