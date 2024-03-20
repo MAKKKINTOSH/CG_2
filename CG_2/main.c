@@ -1,5 +1,7 @@
 #include <windows.h>
 #include <gl/gl.h>
+#include "picture_loader.h"
+#include "stb-master/stb_easy_font.h"
 #define MESSAGE 0
 #define RENDER 1
 #define TERMINATE 2
@@ -8,6 +10,7 @@ void EnableOpenGL(HWND hwnd, HDC*, HGLRC*);
 void DisableOpenGL(HWND, HDC, HGLRC);
 
 int width, height;
+GLuint bg;
 
 typedef struct {
     int id;
@@ -51,11 +54,6 @@ void ShowMenu()
     glPopMatrix();
 }
 
-void RenderPicture()
-{
-    printf("rendering...");
-}
-
 void ButtonEventHandler(Button button)
 {
     switch (button.id)
@@ -64,7 +62,8 @@ void ButtonEventHandler(Button button)
             printf("Hello World!\n");
         break;
         case RENDER:
-            RenderPicture();
+            RenderPicture(bg);
+            Sleep(5000000);
         break;
         case TERMINATE:
             PostQuitMessage(0);
@@ -110,15 +109,15 @@ int WINAPI WinMain(HINSTANCE hInstance,
                           WS_OVERLAPPEDWINDOW,
                           CW_USEDEFAULT,
                           CW_USEDEFAULT,
-                          256,
-                          256,
+                          500,
+                          500,
                           NULL,
                           NULL,
                           hInstance,
                           NULL);
 
     ShowWindow(hwnd, nCmdShow);
-
+    LoadPicture("manul.jpg", &bg, GL_CLAMP, GL_CLAMP, GL_NEAREST);
     /* enable OpenGL for the window */
     EnableOpenGL(hwnd, &hDC, &hRC);
 
@@ -147,7 +146,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
             glClear(GL_COLOR_BUFFER_BIT);
 
             ShowMenu();
-
             SwapBuffers(hDC);
         }
     }
