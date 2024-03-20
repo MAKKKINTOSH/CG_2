@@ -5,6 +5,48 @@ LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 void EnableOpenGL(HWND hwnd, HDC*, HGLRC*);
 void DisableOpenGL(HWND, HDC, HGLRC);
 
+int width, height;
+
+typedef struct {
+    char name[20];
+    float vert[8];
+    float color[3];
+    BOOL isActive;
+} Button;
+
+Button buttons[] = {
+    {"printmessage", {0,0, 100,0, 100,30, 0,30}, {1, 100, 0}, FALSE},
+    {"render", {0,40, 100,40, 100,70, 0,70}, {1, 100, 0}, FALSE},
+    {"terminate", {0,80, 100,80, 100,110, 0,110}, {1, 100, 0}, FALSE},
+};
+
+int buttonCounter = sizeof(buttons) / sizeof(buttons[0]);
+
+BOOL IsCursorOnButton(int x, int y, Button button)
+{
+    return (x > button.vert[0]) && (x < button.vert[4]) && (y > button.vert[1]) && (y < button.vert[5]);
+}
+
+void ButtonShow(Button button)
+{
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glColor3f(button.color[0], button.color[1], button.color[2]);
+    if (button.isActive) glColor3f(button.color[0]/2, button.color[1]/2, button.color[2]/2);
+    glVertexPointer(2, GL_FLOAT, 0, button.vert);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDisableClientState(GL_VERTEX_ARRAY);
+}
+
+void ShowMenu()
+{
+    glPushMatrix();
+    glLoadIdentity();
+    glOrtho(0,width, height,0, -1,1);
+    for(int i = 0; i < buttonCounter; i++){
+        ButtonShow(buttons[i]);
+    }
+    glPopMatrix();
+}
 
 int WINAPI WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,
@@ -91,6 +133,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
             glEnd();
 
+            ShowMenu();
+
             glPopMatrix();
 
             SwapBuffers(hDC);
@@ -116,7 +160,32 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
         case WM_CLOSE:
             PostQuitMessage(0);
         break;
+        case WM_MOUSEMOVE:
+            for (int i = 0; i < buttonCounter; i++){
+                if (IsCursorOnButton(LOWORD(lParam), HIWORD(lParam), buttons[i])){
+                    buttons[i].isActive = TRUE;
+                    ButtonShow(buttons[i]);
+                }
+                else{
+                    buttons[i].isActive = FALSE;
+                }
+            }
+        break;
+        case WM_LBUTTONDOWN:
+            for (int i = 0; i < buttonCounter; i++){
+                if (IsCursorOnButton(LOWORD(lParam), HIWORD(lParam), buttons[i])){
+                    printf("%s\n", buttons[i].name);
+                }
+            }
+        break;
 
+        case WM_SIZE:
+            width = LOWORD(lParam);
+            height = HIWORD(lParam);
+            glViewport(0,0, LOWORD(lParam), HIWORD(lParam));
+            glLoadIdentity();
+            float k = LOWORD(lParam) / (float)HIWORD(lParam);
+            glOrtho(-k,k, -1,1, -1,1);
         case WM_DESTROY:
             return 0;
 
