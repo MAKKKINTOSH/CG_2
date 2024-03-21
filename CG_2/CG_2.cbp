@@ -39,6 +39,12 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="picture_loader.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="picture_loader.h" />
+		<Unit filename="stb-master/stb_easy_font.h" />
+		<Unit filename="stb-master/stb_image.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

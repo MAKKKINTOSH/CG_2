@@ -1,7 +1,7 @@
 #include <windows.h>
 #include <gl/gl.h>
-#include "picture_loader.h"
-#include "stb-master/stb_easy_font.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "stb-master/stb_image.h"
 #define MESSAGE 0
 #define RENDER 1
 #define TERMINATE 2
@@ -10,7 +10,53 @@ void EnableOpenGL(HWND hwnd, HDC*, HGLRC*);
 void DisableOpenGL(HWND, HDC, HGLRC);
 
 int width, height;
-GLuint bg;
+unsigned int texture;
+BOOL IsImageOnScreen = FALSE;
+
+
+void LoadPicture()
+{
+    int width, hight, cnt;
+    unsigned char *data = stbi_load("manul.jpg", &width, &hight, &cnt, 0);
+
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, hight, 0, cnt == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+    stbi_image_free(data);
+}
+
+void RenderPicture()
+{
+    static float svertix[] = {-1,-1,0, 1,-1,0, 1,1,0, -1,1,0};
+    static float TexCord[] = {0,1, 1,1, 1,0, 0,0};
+
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    glColor3f(1,1,1);
+    glPushMatrix();
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+        glVertexPointer(3, GL_FLOAT, 0, svertix);
+        glTexCoordPointer(2, GL_FLOAT, 0, TexCord);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glPopMatrix();
+}
+
 
 typedef struct {
     int id;
@@ -62,8 +108,7 @@ void ButtonEventHandler(Button button)
             printf("Hello World!\n");
         break;
         case RENDER:
-            RenderPicture(bg);
-            Sleep(5000000);
+            IsImageOnScreen = TRUE;
         break;
         case TERMINATE:
             PostQuitMessage(0);
@@ -117,9 +162,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
                           NULL);
 
     ShowWindow(hwnd, nCmdShow);
-    LoadPicture("manul.jpg", &bg, GL_CLAMP, GL_CLAMP, GL_NEAREST);
     /* enable OpenGL for the window */
     EnableOpenGL(hwnd, &hDC, &hRC);
+
+    LoadPicture();
 
     /* program main loop */
     while (!bQuit)
@@ -140,12 +186,17 @@ int WINAPI WinMain(HINSTANCE hInstance,
         }
         else
         {
-            /* OpenGL animation code goes here */
-
             glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
             glClear(GL_COLOR_BUFFER_BIT);
 
-            ShowMenu();
+            if (!IsImageOnScreen)
+            {
+                ShowMenu();
+            }
+            else
+            {
+                RenderPicture();
+            }
             SwapBuffers(hDC);
         }
     }

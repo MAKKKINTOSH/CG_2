@@ -1,34 +1,43 @@
 #include <gl/gl.h>
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb-master/stb_image.h"
 #include "picture_loader.h"
+#include "stb-master/stb_image.h"
 
-void LoadPicture(char *filename, GLuint *PictureID, int swarp, int twarp, int filter)
+void aaa(char *filename, GLuint *texture)
 {
     int width, hight, cnt;
     unsigned char *data = stbi_load(filename, &width, &hight, &cnt, 0);
-    glGenTextures(1, PictureID);
-    glBindTexture(GL_TEXTURE_2D, *PictureID);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, swarp);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, twarp);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, hight, 0, cnt == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
+
+    glGenTextures(1, texture);
+    glBindTexture(GL_TEXTURE_2D, *texture);
+
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, hight, 0, cnt == 4 ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, data);
+
     glBindTexture(GL_TEXTURE_2D, 0);
     stbi_image_free(data);
 }
 
-void RenderPicture(GLuint picture)
+void ddd(GLuint picture)
 {
-    static float svertix[] = {0,0, 256,0, 256,256, 0,256};
+    static float svertix[] = {-1,-1,0, 1,-1,0, 1,1,0, -1,1,0};
     static float TexCord[] = {0,0, 1,0, 1,1, 0,1};
+
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, picture);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glVertexPointer(2, GL_FLOAT, 0, svertix);
-    glTexCoordPointer(2, GL_FLOAT, 0, TexCord);
-    glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+
+    glColor3f(1,1,1);
+    glPushMatrix();
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+        glVertexPointer(3, GL_FLOAT, 0, svertix);
+        glTexCoordPointer(2, GL_FLOAT, 0, TexCord);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glPopMatrix();
 }
