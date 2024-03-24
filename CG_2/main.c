@@ -2,6 +2,7 @@
 #include <gl/gl.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb-master/stb_image.h"
+#include "stb-master/stb_easy_font.h"
 #define MESSAGE 0
 #define RENDER 1
 #define TERMINATE 2
@@ -41,6 +42,18 @@ void ButtonShow(Button button)
     if (button.isActive) glColor3f(button.color[0]/2, button.color[1]/2, button.color[2]/2);
     glVertexPointer(2, GL_FLOAT, 0, button.vert);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+    glDisableClientState(GL_VERTEX_ARRAY);
+
+    static char buffer[99999]; // ~500 chars
+    int num_quads;
+    num_quads = stb_easy_font_print(button.vert[0]+30, button.vert[1]+10, button.name, NULL, buffer , sizeof(buffer));
+
+    stb_easy_font_spacing(1);
+
+    glColor3f(0.0f,0.0f,0.0f);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(2, GL_FLOAT, 16, buffer);
+    glDrawArrays(GL_QUADS, 0, num_quads*4);
     glDisableClientState(GL_VERTEX_ARRAY);
 }
 
