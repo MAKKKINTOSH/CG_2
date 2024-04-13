@@ -593,157 +593,100 @@ int strip_table(table *t, int exceptions)
    int p = t->length-1;
    while (t->input[p] == t->dont_care)
       --p;
-   terminal_value = t->input[p];
+   terminal_value = t->inpuÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ special;
+   uint8 aligned;
+   uint8 indirect;
 
-   while (p >= 0x10000) {
-      if (t->input[p] != terminal_value && t->input[p] != t->dont_care) {
-         if (exceptions)
-            --exceptions;
-         else
-            break;
-      }
-      --p;
-   }
-   return p+1; // p is a character we must output
+   uint16 overhead; // add some forced overhead for each mode to avoid getting complex encoding when it doesn't save much
+
+} mode_info;
+
+mode_info modes[] =
+{
+   {   0,0,0,0,0,    32, },
+   {   0,0,0,0,1,   100, },
+   {   0,0,0,1,0,    32, },
+   {   0,0,0,1,1,   100, },
+   {   0,0,1,0,1,   100, },
+   {   0,0,1,1,0,    32, },
+   {   0,0,1,1,1,   200, },
+   {   1,0,0,0,0,   100, },
+   {   1,0,0,0,1,   120, },
+   {   1,1,0,0,0,   100, },
+   {   1,1,0,0,1,   130, },
+   {   1,0,1,0,0,   130, },
+   {   1,0,1,0,1,   180, },
+   {   1,1,1,0,0,   180, },
+   {   1,1,1,0,1,   200, },
+};
+
+#define MODECOUNT  (sizeof(modes)/sizeof(modes[0]))
+#define CLUSTERSIZECOUNT   6    // 8,16, 32,64,  128,256
+
+size_t size_for_max_number(uint32 number)
+{
+   if (number == 0) return 0;
+   if (number < 256) return 1;
+   if (number < 256*256) return 2;
+   if (number < 256*256*256) return 3;
+   return 4;
 }
 
-void optimize_table(table *t, char *table_name)
+size_t size_for_max_number_aligned(uint32 number)
 {
-   int modelist[3] = { 85, -1 };
-   int modes[8];
-   int num_modes = 0;
-   int decent_size;
-   result r;
-   size_t path;
-   table s;
+   size_t n = size_for_max_number(number);
+   return n == 3 ? 4 : n;
+}
 
-   // strip tail end of table
-   int orig_length = t->length;
-   int threshhold = 0xffff;
-   int p = strip_table(t, 2);
-   int len_saved = t->length - p;
-   if (len_saved >= threshhold) {
-      t->length = p;
-      while (p > 0x10000) {
-         p = strip_table(t, 0);
-         len_saved = t->length - p;
-         if (len_saved < 0x10000)
-            break;
-         len_saved = orig_length - p;
-         if (len_saved < threshhold)
-            break;
-         threshhold *= 2;
-      }
-   }
-
-   t->depth = 1;
-
-
-   // find size of table if we use path 86
-   decent_size = pack_table_by_modes(t, modelist);
-
-
-   #if 1
-   // find best packing of remainder of table by exploring tree of packings
-   r = pack_table(t, 0, decent_size);
-   // use the computed 'path' to evaluate and output tree
-   path = r.path;
-   #else
-   path = 86;//90;//132097;
-   #endif
-
-   while (path) {
-      modes[num_modes++] = (path & 127) - 1;
-      path >>= 7;
-   }
-
-   printf("// modes: %d\n", r.path);
-   s = *t;
-   while (num_modes > 0) {
-      char name[256];
-      sprintf(name, "%s_%d", table_name, num_modes+1);
-      --num_modes;
-      s = pack_for_mode(&s, modes[num_modes], name);
-   }
-   // output the final table as-is
-   if (s.splittable)
-      output_table_with_trims(table_name, "_1", s.input, s.length);
+uval get_data(uval *data, int offset, uval *end)
+{
+   if (data + offset >= end)
+      return 0;
    else
-      output_table(table_name, "_1", s.input, s.length, 0, NULL);
+      return data[offset];
 }
 
-uval unicode_table[0x110000];
-
-typedef struct
+int safe_len(uval *data, int len, uval *end)
 {
-   uval lo,hi;
-} char_range;
-
-char_range get_range(char *str)
-{
-   char_range cr;
-   char *p;
-   cr.lo = strtol(str, &p, 16);
-   p = stb_skipwhite(p);
-   if (*p == '.')
-      cr.hi = strtol(p+2, NULL, 16);
-   else
-      cr.hi = cr.lo;
-   return cr;
+   if (len > end - data)
+      return end - data;
+   return len;
 }
 
-char *skip_semi(char *s, int count)
+uval tempdata[256];
+int dirty=0;
+
+size_t find_packed(uval **packed, uval *data, int len, int aligned, int fastpath, uval *end, int offset, int replace)
 {
-   while (count) {
-      s = strchr(s, ';');
-      assert(s != NULL);
-      ++s;
-      --count;
+   int packlen = stb_arr_len(*packed);
+   int i,p;
+
+   if (data+len > end || replace) {
+      int safelen = safe_len(data, len, end);
+      memset(tempdata, 0, dirty*sizeof(tempdata[0]));
+      memcpy(tempdata, data, safelen * sizeof(data[0]));
+      data = tempdata;
+      dirty = len;
    }
-   return s;
-}
+   if (replace) {
+      int i;
+      int safelen = safe_len(data, len, end);
+      for (i=0; i < safelen; ++i)
+         if (data[i] == 0)
+            data[i] = offset+i;
+   }
 
-int main(int argc, char **argv)
-{
-   table t;
-   uval maxv=0;
-   int i,n=0;
-   char **s = stb_stringfile("../../data/UnicodeData.txt", &n);
-   assert(s);
-   for (i=0; i < n; ++i) {
-      if (s[i][0] == '#' || s[i][0] == '\n' || s[i][0] == 0)
-         ;
-      else {
-         char_range cr = get_range(s[i]);
-         char *t = skip_semi(s[i], 13);
-         uval j, v;
-         if (*t == ';' || *t == '\n' || *t == 0)
-            v = 0;
-         else {
-            v = strtol(t, NULL, 16);
-            if (v < 65536) {
-               maxv = stb_max(v, maxv);
-               for (j=cr.lo; j <= cr.hi; ++j) {
-                  unicode_table[j] = v;
-                  //printf("%06x => %06x\n", j, v);
-               }
-            }
-         }
+   if (len <= 0)
+      return 0;
+   if (!fastpath) {
+      if (aligned) {
+         for (i=0; i < packlen; i += len)
+            if ((*packed)[i] == data[0] && 0==memcmp(&(*packed)[i], data, len * sizeof(uval)))
+               return i / len;
+      } else {
+         for (i=0; i < packlen-len+1; i +=  1 )
+            if ((*packed)[i] == data[0] && 0==memcmp(&(*packed)[i], data, len * sizeof(uval)))
+               return i;
       }
    }
-
-   t.depth = 0;
-   t.dont_care = UVAL_DONT_CARE_DEFAULT;
-   t.fallback = 0;
-   t.fastpath = 256;
-   t.inherited_storage = 0;
-   t.has_sign = 0;
-   t.splittable = 0;
-   t.input = unicode_table;
-   t.input_size = size_for_max_number(maxv);
-   t.length = 0x110000;
-   t.replace_fallback_with_codepoint = 1;
-
-   optimize_table(&t, "stbu_upppercase");
-   return 0;
-}
+ 
