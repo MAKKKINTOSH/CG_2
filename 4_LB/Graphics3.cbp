@@ -45,10 +45,6 @@
 		<Unit filename="menu.h" />
 		<Unit filename="stb-master/stb_easy_font.h" />
 		<Unit filename="stb-master/stb_image.h" />
-		<Unit filename="texture_manager.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="texture_manager.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

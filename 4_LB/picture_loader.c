@@ -1,5 +1,5 @@
 #include <gl/gl.h>
-#include "texture_manager.h"
+#include "picture_loader.h"
 #include "stb-master/stb_image.h"
 
 void LoadPicture(char *filename, GLuint *texture)
@@ -22,18 +22,21 @@ void LoadPicture(char *filename, GLuint *texture)
 
 void RenderPicture(GLuint picture)
 {
-    static float svertix[]= {1080*2,700, 1080*2,0, -1080,0, -1080,700};
-    static float TexCord[]= {-1,1, -1,0, 2,0, 2,1 };
-    glClearColor(0,0,0,0);
+    static float svertix[] = {-1,-1,0, 1,-1,0, 1,1,0, -1,1,0};
+    static float TexCord[] = {0,1, 1,1, 1,0, 0,0};
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, picture);
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-    glVertexPointer(2,GL_FLOAT,0,svertix);
-    glTexCoordPointer(2,GL_FLOAT,0,TexCord);
-    glDrawArrays(GL_TRIANGLE_FAN,0,4);
+    glColor3f(1,1,1);
+    glPushMatrix();
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+        glVertexPointer(3, GL_FLOAT, 0, svertix);
+        glTexCoordPointer(2, GL_FLOAT, 0, TexCord);
+        glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glPopMatrix();
 }
