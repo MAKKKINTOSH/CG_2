@@ -44,22 +44,22 @@ char TileMap[H][W] = {
     "B                                      B",
     "B                                      B",
     "B                                      B",
+    "BB                                     B",
     "B                                      B",
     "B                                      B",
-    "B                                      B",
-    "B                                      B",
+    "BBB                                    B",
     "B                    BBBBBBB           B",
     "B                                      B",
+    "BBBBBBBB                               B",
+    "B                                      B",
+    "B                                      B",
+    "B                                      B",
     "BBBBBBBBBB                             B",
-    "B                                      B",
-    "B                                      B",
-    "B                                      B",
-    "B                                      B",
     "B                          BBBBBBBBBBBBB",
     "B                                      B",
-    "BBBBBBB                                B",
+    "BBBBBBBBBBBB                           B",
     "                                        ",
-    "                BBBBBB                  ",
+    "                     BBBBB              ",
     "                                        ",
     "                                        ",
     "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
@@ -86,7 +86,7 @@ Hero hero = {
     .isAirborne = TRUE,
     .isMoving = FALSE,
     .width = 80.0f,
-    .height = 100.0f,
+    .height = 120.0f,
     .scale = 1.0f,
     .currentJumpSpeed = 0.0f
 };
@@ -133,6 +133,54 @@ BOOL CollisionHappened(float x, float y, Hero *hero) {
     }
     return FALSE;
 }
+void isCollisionRight(float x, float y, Hero *hero, int *result_arr){
+    int blocks_x = (int)((x + hero->width)/blockSize);
+    for (int j = (int)(y/blockSize); j >= (int)((y - hero->height)/blockSize); j--){
+        if (TileMap[j][blocks_x] == 'B') {
+            result_arr[0] = 1;
+            result_arr[1] = blocks_x;
+            result_arr[2] = j;
+            return;
+        }
+    }
+    result_arr[0] = 0;
+}
+void isCollisionLeft(float x, float y, Hero *hero, int *result_arr){
+    int blocks_x = (int)(x/blockSize);
+    for (int j = (int)(y/blockSize); j >= (int)((y - hero->height)/blockSize); j--){
+        if (TileMap[j][blocks_x] == 'B') {
+            result_arr[0] = 1;
+            result_arr[1] = blocks_x;
+            result_arr[2] = j;
+            return;
+        }
+    }
+    result_arr[0] = 0;
+}
+void isCollisionDown(float x, float y, Hero *hero, int *result_arr){
+    int blocks_y = (int)(y/blockSize);
+    for (int i = (int)(x/blockSize); i <= (int)((x + hero->width)/blockSize); i++){
+        if (TileMap[blocks_y][i] == 'B') {
+            result_arr[0] = 1;
+            result_arr[1] = i;
+            result_arr[2] = blocks_y;
+            return;
+        }
+    }
+    result_arr[0] = 0;
+}
+void isCollisionUp(float x, float y, Hero *hero, int *result_arr){
+    int blocks_y = (int)((y + hero->height)/blockSize);
+    for (int i = (int)(x/blockSize); i <= (int)((x + hero->width)/blockSize); i++){
+        if (TileMap[blocks_y][i] == 'B') {
+            result_arr[0] = 1;
+            result_arr[1] = i;
+            result_arr[2] = blocks_y;
+            return;
+        }
+    }
+    result_arr[0] = 0;
+}
 
 void UpdateHeroPositionAndCollisions(Hero *hero) {
     if (hero->y < 0) {
@@ -152,24 +200,29 @@ void UpdateHeroPositionAndCollisions(Hero *hero) {
         hero->dx = 0;
     }
 
-    float potentialNewX = hero->x + hero->dx;
-    float potentialNewY = hero->y + hero->dy;
+    float old_x = hero->x;
+    float old_y = hero->y;
 
-     //проверка коллизии по Y
-       if (hero->dy != 0) {
-        if (CollisionHappened(hero->x, potentialNewY, hero)) {
-            hero->dy = 0;
-            hero->isAirborne = FALSE;
-            }
-        }
+    hero->x += hero->dx;
+    hero->y += hero->dy;
 
-        //проверка коллизии по X
-    if (hero->dx != 0) {
-        if(CollisionHappened(potentialNewX, hero->y, hero))
-        {
-            hero->dx = 0;
-        }
-        hero->x += hero->dx;
+    int* left_arr = (int*) malloc(3 * sizeof(int));
+    int* right_arr = (int*) malloc(3 * sizeof(int));
+    int* up_arr = (int*) malloc(3 * sizeof(int));
+    int* down_arr = (int*) malloc(3 * sizeof(int));
+
+    isCollisionRight(hero->x, old_y, hero, right_arr);
+    isCollisionLeft(hero->x, old_y, hero, left_arr);
+    isCollisionDown(old_x, hero->y, hero, down_arr);
+    isCollisionUp(old_x, hero->y, hero, up_arr);
+
+    if(down_arr[0]){
+        hero->y = down_arr[2]*blockSize - blockSize*5;
+        isAirborne = FALSE;
+        hero->dy = 0;
+    }
+    else{
+        isAirborne = TRUE;
     }
 
     if(hero->isAirborne)
@@ -184,41 +237,6 @@ void UpdateHeroPositionAndCollisions(Hero *hero) {
         {
             hero->dy -= gravity;
             hero->y += hero->dy;
-        }
-    }
-
-    BOOL hasBlocksBelow = FALSE;
-
-    // Проверяем блоки в нижнем диапазоне под персонажем
-    int bottomTileY = round((hero->y + hero->height*hero->scale) / blockSize); // Нижний тайл под персонажем
-    int leftTileX = round(hero->x / blockSize); // Левый тайл под персонажем
-    int rightTileX = round((hero->x + hero->width * hero->scale) / blockSize); // Правый тайл под персонажем
-
-    for (int j = leftTileX; j <= rightTileX; j++) {
-        if (TileMap[bottomTileY][j] == 'B') {
-            hasBlocksBelow = TRUE;
-            break;
-        }
-    }
-
-    // Если блоков нет в нижнем диапазоне, персонаж начинает падать
-    if (!hasBlocksBelow) {
-        hero->isAirborne = TRUE;
-    }
-
-        // Проверка коллизии с потолком
-    if (hero->dy > 0) { // Проверяем только при подъеме персонажа
-        int topTileY = round(hero->y / blockSize); // Верхний тайл над персонажем
-        int leftTileX = (int)(hero->x / blockSize)+1; // Левый тайл над персонажем
-        int rightTileX = (int)((hero->x + hero->width * hero->scale) / blockSize)-1; // Правый тайл над персонажем
-
-        for (int j = leftTileX; j <= rightTileX; j++) {
-            if (TileMap[topTileY][j] == 'B') {
-                hero->dy = 0;
-                hero->y = (topTileY + 1) * blockSize;
-                hero->currentJumpSpeed = 0; // Перемещаем персонажа на самый верхний блок
-                break;
-            }
         }
     }
 }

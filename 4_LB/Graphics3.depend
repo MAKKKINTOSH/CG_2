@@ -232,7 +232,7 @@
 	"stb-master/stb_easy_font.h"
 	"Menu.h"
 
-1712994084 source:c:\Рабочий стол\opengl\4_lb\menu.c
+1713001140 source:c:\Рабочий стол\opengl\4_lb\menu.c
 	<gl/gl.h>
 	<stdio.h>
 	<stdlib.h>
@@ -246,7 +246,7 @@
 
 1712991278 c:\Рабочий стол\opengl\4_lb\menu.h
 
-1712995461 source:c:\Рабочий стол\opengl\4_lb\main.c
+1713005865 source:c:\Рабочий стол\opengl\4_lb\main.c
 	<windows.h>
 	<gl/gl.h>
 	<math.h>
