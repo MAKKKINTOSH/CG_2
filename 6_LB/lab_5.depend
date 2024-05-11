@@ -1,0 +1,112 @@
+# depslib dependency file v1.0
+1683079173 source:c:\users\profile\desktop\lab5_cg\lab_5\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+
+1683079186 c:\users\profile\desktop\lab5_cg\lab_5\camera.h
+
+1683079196 source:c:\users\profile\desktop\lab5_cg\lab_5\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683079196 source:c:\users\profile\desktop\lab6_cg\lab_6\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683081986 source:c:\users\profile\desktop\lab6_cg\lab_6\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683082380 source:c:\users\profile\desktop\lab6_cg\lab_6\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+
+1683079186 c:\users\profile\desktop\lab6_cg\lab_6\camera.h
+
+1683080684 c:\users\profile\desktop\lab6_cg\lab_6\light.h
+
+1683079196 source:c:\users\profile\desktop\cg\lab6_cg\lab_6\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683340458 source:c:\users\profile\desktop\cg\lab6_cg\lab_6\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683340383 source:c:\users\profile\desktop\cg\lab6_cg\lab_6\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+
+1683079186 c:\users\profile\desktop\cg\lab6_cg\lab_6\camera.h
+
+1683082589 c:\users\profile\desktop\cg\lab6_cg\lab_6\light.h
+
+1683079196 source:c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\6\lab6_cg\lab_6\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683340458 source:c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\6\lab6_cg\lab_6\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683340383 source:c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\6\lab6_cg\lab_6\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+
+1683079186 c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\6\lab6_cg\lab_6\camera.h
+
+1683082589 c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\6\lab6_cg\lab_6\light.h
+
+1715425625 source:c:\Рабочий стол\opengl\6_lb\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1715426077 source:c:\Рабочий стол\opengl\6_lb\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1715426228 source:c:\Рабочий стол\opengl\6_lb\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+
+1715424898 c:\Рабочий стол\opengl\6_lb\camera.h
+
+1715425217 c:\Рабочий стол\opengl\6_lb\light.h
+
