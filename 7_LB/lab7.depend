@@ -1,0 +1,133 @@
+# depslib dependency file v1.0
+1683079196 source:c:\users\profile\desktop\cg\lab7_cg\lab7\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1684031915 source:c:\users\profile\desktop\cg\lab7_cg\lab7\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1684047939 source:c:\users\profile\desktop\cg\lab7_cg\lab7\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+	"build.h"
+
+1683079186 c:\users\profile\desktop\cg\lab7_cg\lab7\camera.h
+
+1683082589 c:\users\profile\desktop\cg\lab7_cg\lab7\light.h
+
+1684050157 source:c:\users\profile\desktop\cg\lab7_cg\lab7\build.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1684047966 c:\users\profile\desktop\cg\lab7_cg\lab7\build.h
+
+1684050157 source:c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\7\lab7_cg\lab7\build.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1683079196 source:c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\7\lab7_cg\lab7\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1684031915 source:c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\7\lab7_cg\lab7\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1684050179 source:c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\7\lab7_cg\lab7\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+	"build.h"
+
+1683079186 c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\7\lab7_cg\lab7\camera.h
+
+1683082589 c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\7\lab7_cg\lab7\light.h
+
+1684050157 c:\Рабочий стол\АСУб\2 курс\Макс Корж\computergraphics-main\computergraphics-main\7\lab7_cg\lab7\build.h
+
+1715920831 source:c:\Рабочий стол\opengl\7_lb\build.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1715427345 source:c:\Рабочий стол\opengl\7_lb\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1684031915 source:c:\Рабочий стол\opengl\7_lb\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1715920628 source:c:\Рабочий стол\opengl\7_lb\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+	"build.h"
+
+1715427345 c:\Рабочий стол\opengl\7_lb\camera.h
+
+1683082589 c:\Рабочий стол\opengl\7_lb\light.h
+
+1715920260 c:\Рабочий стол\opengl\7_lb\build.h
+
+1715427345 source:d:\КГ_лаба_7\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1684031915 source:d:\КГ_лаба_7\light.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
+1715920628 source:d:\КГ_лаба_7\main.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+	"camera.h"
+	"light.h"
+	"build.h"
+
+1715427345 d:\КГ_лаба_7\camera.h
+
+1683082589 d:\КГ_лаба_7\light.h
+
+1715920260 d:\КГ_лаба_7\build.h
+
+1715920831 source:d:\КГ_лаба_7\build.cpp
+	<windows.h>
+	<gl/gl.h>
+	<math.h>
+	<iostream>
+
